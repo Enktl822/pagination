@@ -1,5 +1,5 @@
 .page {
-  border: 1px solid #abb8c3;
-  width: 500px;
+  background-color: aqua;
   height: 500px;
+  display: flex;
 }

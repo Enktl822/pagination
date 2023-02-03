@@ -1,27 +1,51 @@
 import PageBtn from "./PageBtn";
 import "../styles/pagination.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 
 const PageNumbers = 446;
 
 export default function Pagination() {
   const [currentPage, setCurrentPage] = useState(10);
+  const lastpage = 99;
+  const { id } = useParams();
+  console.log(id);
   return (
-    <div className="pagination">
-      <Link
-        to={`/page/${currentPage - 1}`}
-        onClick={() => setCurrentPage(currentPage - 1)}
-      >
-        <PageBtn btnName={"Өмнөх"} btnClass={"pageBtn"} />
-      </Link>
+    <div className="container pagination">
+      {/* {currentPage > 1 && currentPage < lastpage && } */}
+      {currentPage < 3 ? (
+        <Link
+          to={`/page/${currentPage - 1}`}
+          onClick={() => setCurrentPage(currentPage - 1)}
+          hidden
+        >
+          <PageBtn btnName={"Өмнөх"} btnClass={"pageBtn"} />
+        </Link>
+      ) : (
+        <Link
+          to={`/page/${currentPage - 1}`}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          <PageBtn btnName={"Өмнөх"} btnClass={"pageBtn"} />
+        </Link>
+      )}
 
-      <Link
-        to={`/page/${currentPage - 3}`}
-        onClick={() => setCurrentPage(currentPage - 3)}
-      >
-        <PageBtn btnName={currentPage - 3} btnClass={"pageBtn"} />
-      </Link>
+      {currentPage < 4 ? (
+        <Link
+          to={`/page/${currentPage - 3}`}
+          onClick={() => setCurrentPage(currentPage - 3)}
+          hidden
+        >
+          <PageBtn btnName={currentPage - 3} btnClass={"pageBtn"} />
+        </Link>
+      ) : (
+        <Link
+          to={`/page/${currentPage - 3}`}
+          onClick={() => setCurrentPage(currentPage - 3)}
+        >
+          <PageBtn btnName={currentPage - 3} btnClass={"pageBtn"} />
+        </Link>
+      )}
 
       <Link
         to={`/page/${currentPage - 2}`}
